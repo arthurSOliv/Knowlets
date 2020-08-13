@@ -4,12 +4,10 @@ module.exports = app => {
     app.post('/validateToken', app.api.auth.validateToken);
 
     app.route('/users')
-        .all(app.config.passport.authenticate())
         .post(app.api.user.createUser)
         .get(app.api.user.getUsers);
 
     app.route('/company/:id')
-        .all(app.config.passport.authenticate())
         .post(app.api.company.createCompany)
         .get(app.api.company.getCompanys)
         .put(app.api.company.editCompany)

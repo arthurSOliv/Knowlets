@@ -15,7 +15,7 @@ import List from './List';
 
 export default {
     name: 'Home',
-    components: {PageTitle, List}
+    components: { PageTitle, List }
 }
 </script>
 

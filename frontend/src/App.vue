@@ -40,8 +40,8 @@ export default {
 		grid-template-columns: 300px 1fr;
 		grid-template-areas:
 			"header header"
-			"menu content"
-			"menu footer"
+			"content content"
+			"footer footer"
 		;
 	}
 
