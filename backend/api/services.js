@@ -66,16 +66,6 @@ module.exports = app => {
 
             existsOrError(userFromDB, 'Usuário não existente!');
 
-            const companyFromDB = await app.db('company')
-                .where({id: req.params.companyId}).first();
-
-            existsOrError(companyFromDB, 'Empresa não existente!');
-
-            const productFromDB = await app.db('products')
-                .where({id: req.params.productId}).first();
-
-            existsOrError(productFromDB, 'Produto não existente!');
-
         } catch (error) {
             return res.status(400).json(error);
         }
@@ -84,8 +74,6 @@ module.exports = app => {
             .select('id', 'name', 'description', 'userId', 'companyId', 'productId')
             .where({
                 userId: req.params.userId,
-                companyId: req.params.companyId,
-                productId: req.params.productId
             })
             .then(services => res.json(services))
             .catch(err => res.status(500).send(err));

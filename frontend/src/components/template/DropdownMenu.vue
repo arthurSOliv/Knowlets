@@ -5,7 +5,7 @@
           <i class="fa fa-angle-down"></i>
         </div>
         <div class="user-dropdown-content">
-            <router-link to="/"><i class="fa fa-home"></i> Home</router-link>
+            <router-link to="/home"><i class="fa fa-home"></i> Home</router-link>
             <router-link to="/admin"><i class="fa fa-cogs"></i> Administração</router-link>
             <a href @click.prevent="logout"><i class="fa fa-sign-out"></i> Sair</a>
         </div>
@@ -13,8 +13,16 @@
 </template>
 
 <script>
+import { userKey } from '@/global';
 export default {
     name: 'DropdownMenu',
+    methods: {
+        logout() {
+            localStorage.removeItem(userKey);
+            this.$store.commit('setUser', null);
+            this.$router.push({ name: 'auth' });
+        }
+    }
 }
 </script>
 

@@ -4,16 +4,21 @@ module.exports = app => {
     app.post('/validateToken', app.api.auth.validateToken);
 
     app.route('/users')
+        .all(app.config.passport.authenticate())
         .post(app.api.user.createUser)
+
+    app.route('/users/:id')
+        .all(app.config.passport.authenticate())
         .get(app.api.user.getUsers);
 
     app.route('/company/:id')
+        .all(app.config.passport.authenticate())
         .post(app.api.company.createCompany)
         .get(app.api.company.getCompanys)
         .put(app.api.company.editCompany)
         .delete(app.api.company.deleteCompany);
 
-    app.route('/product/:userId/:companyId')
+    app.route('/product/:userId/:companyId?')
         .all(app.config.passport.authenticate())
         .post(app.api.product.createProduct)
         .get(app.api.product.getProducts);
@@ -23,7 +28,7 @@ module.exports = app => {
         .put(app.api.product.editProduct)
         .delete(app.api.product.deleteProduct);
 
-    app.route('/service/:userId/:companyId/:productId')
+    app.route('/service/:userId/:companyId?/:productId?')
         .all(app.config.passport.authenticate())
         .post(app.api.services.createService)
         .get(app.api.services.getServices);

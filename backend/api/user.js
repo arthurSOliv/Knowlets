@@ -32,7 +32,8 @@ module.exports = app => {
 
     const getUsers = async (req, res) => {
         app.db('users')
-            .select('id', 'email')
+            .join('company', 'users.id', '=', 'company.userId')
+            .select('users.email', 'company.name', 'company.id')
             .then(users => res.json(users))
             .catch(err => res.status(500).send(err));
     }

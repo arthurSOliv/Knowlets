@@ -1,8 +1,5 @@
 <template>
   <header class="header">
-      <a class="toggle" @click="toggleMenuMethod" v-if="!toggleMenu">
-          <i class="fa fa-lg" :class="icon"></i>
-      </a>
       <h1 class="title">{{ title }}</h1>
       <DropdownMenu v-if="!hideUserDropdown" />
   </header>
@@ -15,19 +12,8 @@ export default {
     components: {DropdownMenu},
     props: {
         title: String,
-        toggleMenu: Boolean,
         hideUserDropdown: Boolean
     },
-    computed: {
-        icon() {
-            return this.$store.state.isMenuVisible ? "fa-angle-left" : "fa-angle-down"
-        }
-    },
-    methods: {
-        toggleMenuMethod() {
-            this.$store.commit('toggleMenu');
-        }
-    }
 }
 </script>
 

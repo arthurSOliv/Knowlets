@@ -59,23 +59,23 @@ module.exports = app => {
 
             existsOrError(userFromDB, 'Usuário não existente!');
 
-            const companyFromDB = await app.db('company')
-                .where({id: req.params.companyId}).first();
-
-            existsOrError(companyFromDB, 'Empresa não existente!');
-
         } catch (error) {
             return res.status(400).json(error);
         }
 
-        app.db('products')
-            .select('id', 'name', 'userId', 'companyId')
-            .where({
-                userId: req.params.userId,
-                companyId: req.params.companyId
-            })
-            .then(companys => res.json(companys))
-            .catch(err => res.status(500).send(err));
+        if(req.params.companyId){
+            app.db('products')
+                .select('id', 'name', 'userId', 'companyId')
+                .where({ companyId: req.params.companyId })
+                .then(products => res.json(products))
+                .catch(err => res.status(500).send(err));
+        } else{
+            app.db('products')
+                .select('id', 'name', 'userId', 'companyId')
+                .where({ userId: req.params.userId })
+                .then(products => res.json(products))
+                .catch(err => res.status(500).send(err));
+        }
     }
 
     const deleteProduct = async (req, res) => {

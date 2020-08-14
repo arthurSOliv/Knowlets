@@ -1,49 +1,11 @@
 <template>
     <b-container>
         <b-row>
-            <b-col class="col-md-6">
+            <b-col class="col-md-6" v-for="user in users" :key="user.id">
                 <b-card-group deck>
                     <b-card header="Cardss with list group">
                         <b-list-group>
-                            <b-list-group-item class="company">Cras justo odio</b-list-group-item>
-                            <b-list-group>
-                                <b-list-group-item>
-                                    <p class="name">Cras justo odio</p>
-                                    <span class="description">Cras justo odio</span>
-                                </b-list-group-item>
-                                <b-list-group-item>Dapibus ac facilisis in</b-list-group-item>
-                                <b-list-group-item>Morbi leo risus</b-list-group-item>
-                                <b-list-group-item>Porta ac consectetur ac</b-list-group-item>
-                                <b-list-group-item>Vestibulum at eros</b-list-group-item>
-                            </b-list-group>
-                        </b-list-group>
-                    </b-card>
-                </b-card-group>
-            </b-col>
-            <b-col class="col-md-6">
-                <b-card-group deck>
-                    <b-card header="Card with list group">
-                        <b-list-group>
-                            <b-list-group-item class="company">Cras justo odio</b-list-group-item>
-                            <b-list-group>
-                                <b-list-group-item>
-                                    <p class="name">Cras justo odio</p>
-                                    <span class="description">Cras justo odio</span>
-                                </b-list-group-item>
-                                <b-list-group-item>Dapibus ac facilisis in</b-list-group-item>
-                                <b-list-group-item>Morbi leo risus</b-list-group-item>
-                                <b-list-group-item>Porta ac consectetur ac</b-list-group-item>
-                                <b-list-group-item>Vestibulum at eros</b-list-group-item>
-                            </b-list-group>
-                        </b-list-group>
-                    </b-card>
-                </b-card-group>
-            </b-col>
-            <b-col class="col-md-6">
-                <b-card-group deck>
-                    <b-card header="Card with list group">
-                        <b-list-group>
-                            <b-list-group-item class="company">Cras justo odio</b-list-group-item>
+                            <b-list-group-item class="company">{{ user.email }}</b-list-group-item>
                             <b-list-group>
                                 <b-list-group-item>
                                     <p class="name">Cras justo odio</p>
@@ -75,8 +37,8 @@ export default {
     },
     methods: {
         getUsers() {
-            axios.get(`${baseApiUrl}/users`).then(res => {
-                this.users = res.data
+            axios.get(`${baseApiUrl}/users/1`).then(res => {
+                this.users = res.data;
             })
         }
     },
@@ -103,7 +65,7 @@ export default {
 
     .company{
         font-size: 1.3rem;
-        background-color: #6b6bff;
+        background-color: #769fea;
     }
 
     .name{

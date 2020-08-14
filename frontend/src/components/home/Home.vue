@@ -3,7 +3,7 @@
         <PageTitle 
             icon="fa fa-home"
             main="Dashboard"
-            sub="Lista das empresas, produtos e serviços"
+            sub="Seja bem vindo à sua página de Empresas"
         />
         <List />
     </div>
